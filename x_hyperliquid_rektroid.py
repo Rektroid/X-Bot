@@ -55,10 +55,12 @@ ROAST_TEMPLATES = {
         "Fuck, {community}, camping LiquidLaunch for $BUDDY pumps? Your wallet’s stuck in a 31-hour rugpull!",
         "Yo {community}, LiquidLaunch’s ‘future’? Your tokens are deader than a fucking testnet! Suck it!",
     ],
-    "hfun players": [
-        "{community}, flipping coins on Hfun like a Vegas loser? Your luck’s so shit, slots are laughing! Suck my dick!",
-        "Fuckin’ {community}, grinding Hfun’s Hyperscan? Your wallet’s getting fucked harder than a bad bet!",
-        "Yo {community}, you’re so deep in Hfun’s slots, you forgot how to trade! Suck my dick, degen!",
+    "hfun/hypurr fun degens": [
+        "{community}, you’re shilling $HFUN’s EVM launch like it’s gonna 10x? Your bags are shittier than a Telegram scam! Suck my dick!",
+        "Fuck, {community}, you’re sniping $HFUN on HyperEVM? Your wallet’s getting fucked harder than a rugpull! Suck it!",
+        "Yo {community}, $HFUN’s Whale Chats are just degens crying over a 80% dump! Even bots are like, ‘Suck my dick!’",
+        "Fuckin’ {community}, you think $HFUN’s EVM bot’s the future? Your portfolio’s shittier than a Hyperliquid crash! Get fucked!",
+        "{community}, HODLing $HFUN like it’s Hyperliquid’s king? Your bags are deader than a testnet meme coin! Suck my dick!",
     ],
     "hyperswap traders": [
         "{community}, swapping $HYPE for $CATBAL like a pro? Your trades slip worse than a fuck in a rugpull! Suck it!",
@@ -133,7 +135,7 @@ X_POST_MENTIONS = {
     "$sph800 holders": [],
     "$pip holders": [],
     "liquidlaunch degens": [],
-    "hfun players": [],
+    "hfun/hypurr fun degens": [],
     "hyperswap traders": [],
     "$catbal holders": [],
     "$neko degens": [],
@@ -149,22 +151,22 @@ X_POST_MENTIONS = {
 # Community activity weights (higher = more posts)
 ACTIVITY_WEIGHTS = {
     "hypio holders": 3.0,  # High activity
-    "alright buddy holders": 3.0,
-    "$neko degens": 2.5,
-    "$purr degens": 2,
-    "pvp.trade degens": 2,
-    "tinyhypercats degens": 1.5,
-    "hyperliquid maxxis": 2.5,  
-    "$catbal holders": 2,
-    "karu degens": 1 ,
-    "drip trade": 1.5,
-    "liquidscan degens": 1,
-    "$sph800 holders": 0.5,  
-    "$pip holders": 0.5,
-    "liquidlaunch degens": 1.5,
-    "hfun players": 2,
-    "hyperswap traders": 1,
-    "$rub degens": 0.5,
+    "alright buddy holders": 3.0,  # High activity
+    "$neko degens": 2.5,  # High activity
+    "$purr degens": 2.0,  # Medium-high activity
+    "pvp.trade degens": 2.0,  # Medium-high activity
+    "tinyhypercats degens": 1.5,  # Medium activity
+    "hyperliquid maxxis": 2.5,  # High activity
+    "$catbal holders": 2.0,  # Medium-high activity
+    "karu degens": 1.0,  # Low-medium activity
+    "drip trade": 1.5,  # Medium activity
+    "liquidscan degens": 1.0,  # Low-medium activity
+    "$sph800 holders": 0.5,  # Low activity
+    "$pip holders": 0.5,  # Low activity
+    "liquidlaunch degens": 1.5,  # Medium activity
+    "hfun/hypurr fun degens": 2.5,  # High activity, EVM launch
+    "hyperswap traders": 1.0,  # Low-medium activity
+    "$rub degens": 0.5,  # Low activity
     "rektroid": 1.0  # Self-promo
 }
 
@@ -210,7 +212,7 @@ def generate_dynamic_roast(community, posts):
     """Generate a new roast based on scraped X posts."""
     community = community.lower()
     if not posts:
-        return random.choice(ROAST_TEMPLATES.get(community, ["No fresh X data, you dumbass! Suck my dick!"])).format(community=community.capitalize())
+        return random.choice(ROAST_TEMPLATES.get(community, ["No fresh X data, you dumbass! Suck my dick!"])).format(community=community.capitalize()), None
     
     bullish_phrases = []
     bearish_phrases = []
@@ -255,7 +257,7 @@ def generate_roast(api, community):
     """Generate a savage roast, prioritizing dynamic X-based roasts."""
     community = community.lower()
     if community not in ROAST_TEMPLATES:
-        return f"No roasts for {community}, you dumbass! Try 'Hypio holders', 'Alright Buddy holders', 'Hyperliquid Maxxis', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', or 'REKTroid' for me!", None
+        return f"No roasts for {community}, you dumbass! Try 'Hypio holders', 'Alright Buddy holders', 'Hyperliquid Maxxis', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun/Hypurr Fun degens', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', or 'REKTroid' for me!", None
     
     # Map community to search query
     query_map = {
@@ -266,7 +268,7 @@ def generate_roast(api, community):
         "$sph800 holders": "$SPH800",
         "$pip holders": "$PIP",
         "liquidlaunch degens": "LiquidLaunch",
-        "hfun players": "Hfun",
+        "hfun/hypurr fun degens": "Hypurr Fun OR $HFUN",
         "hyperswap traders": "Hyperswap",
         "$catbal holders": "$CATBAL",
         "$neko degens": "$NEKO",
@@ -339,7 +341,7 @@ def main():
         schedule.every().day.at(f"08:{i*10:02d}").do(auto_post_roasts, api=api)
     
     while True:
-        community = input("Enter a Hyperliquid Maxxis community to roast (e.g., 'Hypio holders', 'Alright Buddy holders', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', 'REKTroid' for me, or 'quit' to fuck off): ").strip().lower()
+        community = input("Enter a Hyperliquid Maxxis community to roast (e.g., 'Hypio holders', 'Alright Buddy holders', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun/Hypurr Fun degens', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', 'REKTroid' for me, or 'quit' to fuck off): ").strip().lower()
         if community == 'quit':
             print("REKTroid’s out, you fucking degens! Go chase some shitty $REKT airdrops!")
             break
