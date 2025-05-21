@@ -29,11 +29,40 @@ def discord_notify(message):
 # Setup the bot
 rektroid = RektroidBot(api=get_twitter_api(), llm_api_key=os.getenv("OPENROUTER_API_KEY"))
 
+# Community activity weights (higher = more posts)
+ACTIVITY_WEIGHTS = {
+    "hypio holders": 3.0,
+    "alright buddy holders": 3.0,
+    "$neko degens": 2.5,
+    "$purr degens": 2.0,
+    "pvp.trade degens": 2.0,
+    "tinyhypercats degens": 1.5,
+    "hyperliquid maxxis": 2.5,
+    "$catbal holders": 2.0,
+    "karu degens": 1.0,
+    "drip trade": 1.5,
+    "liquidscan degens": 1.0,
+    "$sph800 holders": 0.5,
+    "$pip holders": 0.5,
+    "liquidlaunch degens": 1.5,
+    "hfun/hypurr fun degens": 2.5,
+    "hyperswap traders": 1.0,
+    "$rub degens": 0.5,
+    "rektroid": 1.0
+}
+
 # Auto roast scheduler
 while True:
     try:
-        roast, result = rektroid.auto_post_roast()
-        discord_notify(f"🧠 Scheduled auto-roast:\n{roast}\n✅ {result}")
+        # Weighted community selection
+        communities = list(ACTIVITY_WEIGHTS.keys())
+        weights = list(ACTIVITY_WEIGHTS.values())
+        selected_community = random.choices(communities, weights=weights, k=1)[0]
+        
+        roast = rektroid.generate_roast(selected_community)
+        result = rektroid.post_roast(roast)
+        discord_notify(f"🧠 Scheduled auto-roast for **{selected_community}**:\n{roast}\n✅ {result}")
+
     except Exception as e:
         discord_notify(f"❌ Scheduler crashed: {e}")
 
