@@ -1,9 +1,9 @@
 import json
 import logging
 import random
+import requests
 from datetime import datetime
 from typing import List, Dict, Optional
-import requests
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
@@ -138,25 +138,25 @@ class RektroidBot:
             return f"Failed to post: {e}"
 
     def generate_llm_roast(self, community: str, context: Optional[str] = "") -> str:
-    prompt = f"Write a savage, degenerate crypto-style roast tweet targeting the '{community}' community. Be edgy and meme-heavy."
-    try:
-        headers = {
-            "Authorization": f"Bearer {self.llm_api_key}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": "openrouter/cinematika:free",  # or any other free model
-            "messages": [
-                {"role": "system", "content": "You are REKTroid, a ruthless AI crypto roaster."},
-                {"role": "user", "content": prompt}
-            ]
-        }
-        response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
-        response.raise_for_status()
-        roast = response.json()["choices"][0]["message"]["content"]
-        return roast
-    except Exception as e:
-        return f"LLM failed to generate roast: {e}"
+        prompt = f"Write a savage, degenerate crypto-style roast tweet targeting the '{community}' community. Be edgy and meme-heavy."
+        try:
+            headers = {
+                "Authorization": f"Bearer {self.llm_api_key}",
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "model": "openrouter/cinematika:free",
+                "messages": [
+                    {"role": "system", "content": "You are REKTroid, a ruthless AI crypto roaster."},
+                    {"role": "user", "content": prompt}
+                ]
+            }
+            response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
+            response.raise_for_status()
+            roast = response.json()["choices"][0]["message"]["content"]
+            return roast
+        except Exception as e:
+            return f"LLM failed to generate roast: {e}"
 
     def auto_post_roast(self):
         top_communities = list(self.roast_templates.keys())
