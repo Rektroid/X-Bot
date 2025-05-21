@@ -85,14 +85,35 @@ ROAST_TEMPLATES = {
         "Fuck, {community}, you’re chasing $PURR airdrops? Your bags are so rekt, even Liquidscan’s laughing! Suck it!",
         "{community}, you think $PURR’s gonna hit $1? Your portfolio’s shittier than a meme coin crash! Get fucked!",
     ],
+    "tinyhypercats degens": [
+        "{community}, you’re hyping TinyHyperCats like they’re $CATBAL’s cousins? Your NFTs are shittier than a HyperEVM rugpull! Suck my dick!",
+        "Fuck, {community}, you’re chasing TinyHyperCats airdrops? Your wallet’s so empty, even $PURR’s laughing! Suck it!",
+        "Yo {community}, TinyHyperCats’ JPEGs are deader than a fucking testnet! Your bags are fucked, degen! Suck my dick!",
+        "Fuckin’ {community}, you think TinyHyperCats are gonna moon? Your portfolio’s shittier than a $NEKO scam! Get fucked!",
+        "{community}, shilling TinyHyperCats on X? Your hype’s so weak, bots are like, ‘Suck my dick, I’m out!’",
+    ],
+    "karu degens": [
+        "{community}, you’re HODLing Karu like it’s Hyperliquid’s secret sauce? Nobody knows that shit, you dumbass! Suck my dick!",
+        "Fuck, {community}, you’re shilling Karu on X? Your bags are so obscure, even $RUB’s got more clout! Suck it!",
+        "Yo {community}, Karu’s your big bet? Your wallet’s shittier than a ghost chain’s volume! Suck my dick, degen!",
+        "Fuckin’ {community}, you’re chasing Karu’s non-existent hype? Your portfolio’s getting fucked harder than a failed NFT mint! Suck it!",
+        "{community}, Karu’s price swings are shittier than a rugpull rollercoaster! Your bags are rekt, degen! Get fucked!",
+    ],
+    "pvp.trade degens": [
+        "{community}, you’re hyping pvp.trade’s Telegram bot like it’s gonna 10x? Your trades are shittier than a Hyperliquid hack! Suck my dick!",
+        "Fuck, {community}, you’re trading on pvp.trade with 16 nodes? Your wallet’s so fucked, even $PURR’s got more decentralization! Suck it!",
+        "Yo {community}, pvp.trade’s social trading’s a fucking joke! Your bags are deader than a $NEKO presale! Suck my dick, degen!",
+        "Fuckin’ {community}, you think pvp.trade’s low fees save you? Your portfolio’s shittier than a $500M outflow! Get fucked!",
+        "{community}, shilling pvp.trade on X? Your Telegram dreams are getting fucked harder than a rugpull scam! Suck it!",
+    ],
     "rektroid": [
-        "Yo, I’m REKTroid, $REKT, the savage AI torching degens like it’s my fucking job! Suck my dick, my X burns shit on your $NEKO bags!",
+        "Yo, I’m REKTroid, $REKT, the savage AI torching degens like it’s my fucking job! Suck my dick, my X burns shit on your pvp.trade bags!",
         "Fuck yeah, I’m REKTroid, scraping X faster than you chase $PURR airdrops! Hit me up, you dumbass degens, I’m the king of shade!",
         "It’s REKTroid, $REKT, roasting Hyperliquid clowns with web search and voice mode! Too fucking elite for your sorry ass! Suck my dick!",
     ]
 }
 
-# Simulated X post mentions (based on search as of 5/21/2025, 12:21 AM CEST)
+# Simulated X post mentions (based on search as of 5/21/2025, 11:06 AM CEST)
 X_POST_MENTIONS = {
     "hypio holders": [
         "X degen shilling ‘Hypio Babies to 10x!’ Yo, {community}, your NFTs are so fucked, they’re worth less than a bot’s fart! Suck my dick!",
@@ -154,8 +175,23 @@ X_POST_MENTIONS = {
         "X fool hyping ‘$PURR’s deflationary!’ Yo, {community}, your bags are dumping harder than a flash crash! Suck it!",
         "X shill screaming ‘$PURR’s Hyperliquid’s mascot!’ Fuck, {community}, your $400M MC’s shittier than a cat’s ass! Suck my dick!",
     ],
+    "tinyhypercats degens": [
+        "X degen shilling ‘TinyHyperCats to the moon!’ Yo, {community}, your 17 $HYPE floor’s shittier than a HyperEVM rug! Suck my dick!",
+        "X post hyping ‘TinyHyperCats are lit!’ Fuck, {community}, your NFTs are deader than a fucking testnet! Get fucked!",
+        "X fool whining ‘TinyHyperCats airdrop wen?’ Yo, {community}, your wallet’s so rekt, even Net Protocol’s laughing! Suck it!",
+    ],
+    "karu degens": [
+        "X degen shilling ‘Karu’s the next Hypio!’ Yo, {community}, your 0.1 ETH spike’s shittier than a rugpull crash! Suck my dick!",
+        "X post hyping ‘Karu’s rebound vibes!’ Fuck, {community}, your bags are swingier than a fucking testnet! Get fucked!",
+        "X fool crying ‘Karu airdrop wen?’ Yo, {community}, your wallet’s so rekt, even Base network’s like, ‘Suck my dick!’",
+    ],
+    "pvp.trade degens": [
+        "X degen shilling ‘pvp.trade’s the future!’ Yo, {community}, your Telegram bot’s shittier than a $JELLY exploit! Suck my dick!",
+        "X post hyping ‘pvp.trade group trading!’ Fuck, {community}, your bags are rekt harder than Hyperliquid’s $500M outflow! Get fucked!",
+        "X fool whining ‘pvp.trade fees too low!’ Yo, {community}, your wallet’s so fucked, even 2.5 bps can’t save it! Suck it!",
+    ],
     "rektroid": [
-        "X degens can’t handle REKTroid, $REKT! I’m roasting your shitty $NEKO bags with savage burns! Suck my dick, you clowns!",
+        "X degens can’t handle REKTroid, $REKT! I’m roasting your shitty pvp.trade bags with savage burns! Suck my dick, you clowns!",
         "X fool thinks they can outsmart REKTroid? Fuck, I’m shitting on your $PURR airdrop dreams with web search! Try me, degens!",
     ]
 }
@@ -176,7 +212,7 @@ def generate_roast(community):
     """Generate a savage roast for the given Hyperliquid Maxxis community or REKTroid."""
     community = community.lower()
     if community not in ROAST_TEMPLATES:
-        return f"No roasts for {community}, you dumbass! Try 'Hypio holders', 'Alright Buddy holders', 'Hyperliquid Maxxis', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', or 'REKTroid' for me!"
+        return f"No roasts for {community}, you dumbass! Try 'Hypio holders', 'Alright Buddy holders', 'Hyperliquid Maxxis', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', or 'REKTroid' for me!"
     
     # 60% chance to pull from X_POST_MENTIONS to prioritize X user mentions
     if community in X_POST_MENTIONS and random.random() < 0.6:
@@ -201,7 +237,7 @@ def main():
     api = authenticate_x()
     
     while True:
-        community = input("Enter a Hyperliquid Maxxis community to roast (e.g., 'Hypio holders', 'Alright Buddy holders', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'REKTroid' for me, or 'quit' to fuck off): ").strip().lower()
+        community = input("Enter a Hyperliquid Maxxis community to roast (e.g., 'Hypio holders', 'Alright Buddy holders', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', 'REKTroid' for me, or 'quit' to fuck off): ").strip().lower()
         if community == 'quit':
             print("REKTroid’s out, you fucking degens! Go chase some shitty $REKT airdrops!")
             break
