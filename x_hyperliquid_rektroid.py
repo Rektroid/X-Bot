@@ -151,19 +151,19 @@ ACTIVITY_WEIGHTS = {
     "hypio holders": 3.0,  # High activity
     "alright buddy holders": 3.0,
     "$neko degens": 2.5,
-    "$purr degens": 2.5,
-    "pvp.trade degens": 2.5,
-    "tinyhypercats degens": 2.5,
-    "hyperliquid maxxis": 1.5,  # Medium activity
-    "$catbal holders": 1.5,
-    "karu degens": 1.5,
+    "$purr degens": 2,
+    "pvp.trade degens": 2,
+    "tinyhypercats degens": 1.5,
+    "hyperliquid maxxis": 2.5,  
+    "$catbal holders": 2,
+    "karu degens": 1 ,
     "drip trade": 1.5,
-    "liquidscan degens": 1.5,
-    "$sph800 holders": 0.5,  # Low activity
+    "liquidscan degens": 1,
+    "$sph800 holders": 0.5,  
     "$pip holders": 0.5,
-    "liquidlaunch degens": 0.5,
-    "hfun players": 0.5,
-    "hyperswap traders": 0.5,
+    "liquidlaunch degens": 1.5,
+    "hfun players": 2,
+    "hyperswap traders": 1,
     "$rub degens": 0.5,
     "rektroid": 1.0  # Self-promo
 }
