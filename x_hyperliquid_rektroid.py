@@ -1,4 +1,5 @@
 import random
+import time
 import tweepy  # For X API interaction (simulated)
 
 # Simulated X API setup (replace with real credentials from https://developer.x.com)
@@ -233,22 +234,21 @@ def post_roast(api, roast):
         return f"Failed to post roast: {e}. Shit’s fucked."
 
 def main():
-    """Main function to run the X roast bot for Hyperliquid Maxxis degens and REKTroid."""
     api = authenticate_x()
-    
+    communities = list(ROAST_TEMPLATES.keys())
+
+    if api is None:
+        print("Exiting because API is broken.")
+        return
+
     while True:
-        community = input("Enter a Hyperliquid Maxxis community to roast (e.g., 'Hypio holders', 'Alright Buddy holders', 'Drip Trade', '$SPH800 holders', '$PIP holders', 'LiquidLaunch degens', 'Hfun players', 'Hyperswap traders', '$CATBAL holders', '$NEKO degens', '$RUB degens', 'Liquidscan degens', '$PURR degens', 'TinyHyperCats degens', 'Karu degens', 'pvp.trade degens', 'REKTroid' for me, or 'quit' to fuck off): ").strip().lower()
-        if community == 'quit':
-            print("REKTroid’s out, you fucking degens! Go chase some shitty $REKT airdrops!")
-            break
-        
+        community = random.choice(communities)
         roast = generate_roast(community)
         print(f"Roast: {roast}")
+        post_result = post_roast(api, roast)
+        print(post_result)
         
-        post_choice = input("Post this roast to X? (yes/no): ").strip().lower()
-        if post_choice == 'yes':
-            result = post_roast(api, roast)
-            print(result)
+        time.sleep(60 * 60)  # Wait 1 hour between posts – adjust as needed
 
 if __name__ == "__main__":
     main()
