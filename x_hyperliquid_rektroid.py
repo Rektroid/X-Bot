@@ -3,7 +3,7 @@ import time
 import tweepy  # For X API interaction (simulated)
 
 # Simulated X API setup (replace with real credentials from https://developer.x.com)
-API_KEY = "your_api_key"
+API_KEY = os.environ.get("API_KEY")
 API_SECRET = "your_api_secret"
 ACCESS_TOKEN = "your_access_token"
 ACCESS_TOKEN_SECRET = "your_access_token_secret"
